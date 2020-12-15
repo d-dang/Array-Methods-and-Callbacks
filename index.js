@@ -16,6 +16,20 @@ Practice accessing data by console.log-ing the following pieces of data note, yo
 //(e) Winner of 2014 world cup final */
 
 
+let index = fifaData.findIndex(data => data.Year === 2014 && data.Stage === "Final");
+let winner = "";
+if (fifaData[index]["Home Team Goals"] > fifaData[index]["Away Team Goals"]){
+    winner = fifaData[index]["Home Team Name"];
+} else if (fifaData[index]["Away Team Goals"] > fifaData[index]["Home Team Goals"]){
+    winner = fifaData[index]["Home Team Name"];
+}else {
+    winner = fifaData[index]["Win Conditions"];
+}
+console.log(fifaData[index]["Home Team Name"]);
+console.log(fifaData[index]["Away Team Name"]);
+console.log(fifaData[index]["Home Team Goals"]);
+console.log(fifaData[index]["Away Team Goals"]);
+console.log(winner);
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
 1. Receive data as a parameter
@@ -24,11 +38,12 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(arr) {
+    let finals = arr.filter(data => data.Stage == "Final");
+    return finals;
 }
-
-
+console.log("task 2");
+console.log(getFinals(fifaData));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -36,10 +51,12 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(arr, getFinals) {
+    let finals = getFinals(arr);
+    let years = finals.map(fyear => fyear.Year);
+    return years;
 }
-
+console.log("Task 3: " + getYears(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
